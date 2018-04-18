@@ -1,7 +1,6 @@
 body {
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
-    user-select: none;
 }
 
 .timer {
@@ -113,11 +112,14 @@ button {
     font-size: 48px;
 }
 button.primary {
-    background-color: #00C1FF;
+    background-color: #00baf2;
     color: white;
 }
 button.primary:hover {
     background-color: #40C9FF;
+}
+button.primary:focus {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 button.secondary {
     background-color: rgba(0, 0, 0, 0);
@@ -126,6 +128,9 @@ button.secondary {
 }
 button.secondary:hover {
     background-color: rgba(0, 0, 0, 0.05);
+}
+button.secondary:focus {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 .reset {
     grid-row: 3;
