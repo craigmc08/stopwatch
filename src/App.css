@@ -1,0 +1,135 @@
+body {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    user-select: none;
+}
+
+.timer {
+    display: grid;
+    grid-template-rows: 1fr auto 2fr;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #F2F2F2;
+}
+.display {
+    justify-self: center;
+    grid-row: 2;
+    display: flex;
+}
+.display > .number-container {
+    margin-right: 32px;
+}
+.number-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+.number-container > div {
+    margin-left: auto;
+    margin-right: auto;
+}
+.number {
+    font-size: 288px;
+    color: #333333;
+}
+.label {
+    font-size: 48px;
+    color: #828282;
+}
+
+.seconds-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+}
+.seconds {
+    color: #333333;
+}
+.seconds-label {
+    justify-self: center;
+}
+.centiseconds {
+    font-size: 96px;
+    color: #333333;
+    align-self: center;
+}
+
+@media screen and (orientation: portrait) {
+    .number-container {
+        margin: 0 !important;
+    }
+    .timer {
+        grid-template-rows: 1fr auto;
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100%;
+        bottom: auto;
+    }
+    .display {
+        flex-direction: column;
+        grid-row: 1;
+    }
+    .number {
+        font-size: 96px;
+        margin: 0 auto;
+        line-height: 1em;
+    }
+    .label {
+        line-height: 1em;
+        font-size: 32px;
+    }
+    .seconds-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .centiseconds {
+        font-size: 48px;
+    }
+    .seconds-label {
+        grid-row: 2;
+    }
+    .controls {
+        grid-row: 2;
+    }
+}
+
+.controls {
+    grid-row: 3;
+    display: grid;
+    grid-template-rows: 1fr 96px 96px 0px;
+    grid-row-gap: 16px;
+    width: 80%;
+    margin: 0 auto;
+}
+button {
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-size: 48px;
+}
+button.primary {
+    background-color: #00C1FF;
+    color: white;
+}
+button.primary:hover {
+    background-color: #40C9FF;
+}
+button.secondary {
+    background-color: rgba(0, 0, 0, 0);
+    color: #828282;
+    border: 2px solid #828282;
+}
+button.secondary:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.reset {
+    grid-row: 3;
+}
+.start-stop {
+    grid-row: 2;
+}
