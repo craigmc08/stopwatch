@@ -27,6 +27,11 @@ export default class Stopwatch extends React.Component {
     if (time === null || isNaN(parseInt(time, 10))) return;
     this.time = parseInt(time, 10);
     if (this.time === 0) return;
+    if (localStorage.getItem('running') && localStorage.getItem('lastTime')) {
+      const toUpdate = parseInt(localStorage.getItem('lastTime'), 10);
+      this.time += Date.now() - toUpdate;
+      this.onStart();
+    }
     this.setState({
       ...this.getTimeUpdate(),
       inProgress: true,
@@ -43,8 +48,20 @@ export default class Stopwatch extends React.Component {
     });
     this.saveTime();
   }
-  saveTime() {
-    localStorage.setItem('time', this.time);
+  saveTime(running = true) {
+    if (this.time > 0) {
+      localStorage.setItem('time', this.time.toString());
+    } else {
+      localStorage.removeItem('time');
+    }
+    if (running) {
+      localStorage.setItem('time', this.time.toString());
+      localStorage.setItem('running', true.toString());
+      localStorage.setItem('lastTime', Date.now().toString());
+    } else {
+      localStorage.removeItem('running');
+      localStorage.removeItem('lastTime');
+    }
   }
   getTimeUpdate() {
     return {
@@ -61,6 +78,7 @@ export default class Stopwatch extends React.Component {
     this.setState({
       running: false,
     });
+    this.saveTime(false);
   }
   onStart() {
     this.lastUpdate = Date.now();
@@ -69,6 +87,7 @@ export default class Stopwatch extends React.Component {
       running: true,
       inProgress: true,
     });
+    this.saveTime();
   }
   onReset() {
     this.time = 0;
